@@ -1,0 +1,94 @@
+# ==========================================
+# Dependencies
+# ==========================================
+node_modules/
+**/node_modules/
+.pnp
+.pnp.js
+
+# ==========================================
+# Environment & Sensitive Files
+# ==========================================
+.env
+.env.*
+*.env
+!.env.example
+!*.env.example
+!.env.template
+
+# ==========================================
+# Build & Output Directories
+# ==========================================
+dist/
+dist-ssr/
+build/
+out/
+coverage/
+*.local
+
+# ==========================================
+# Logs & Temporary Files
+# ==========================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+temp/
+tmp/
+*.tmp
+*.temp
+
+# ==========================================
+# Python Artifacts & Virtual Environments
+# ==========================================
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ==========================================
+# Operating System Files
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# ==========================================
+# IDE & Editor Files
+# ==========================================
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode/*
+!.vscode/tasks.json
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# ==========================================
+# Ensure Critical Config & Lockfiles are Tracked
+# ==========================================
+!package.json
+!package-lock.json
+!backend/package.json
+!backend/package-lock.json
+!frontend/package.json
+!frontend/package-lock.json

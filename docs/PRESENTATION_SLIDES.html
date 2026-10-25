@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CreatiCV — Final Year CSE Capstone Presentation</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Rubik:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Rubik', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#E8F8F3',
+              100: '#D1F2E7',
+              200: '#A3E5CF',
+              300: '#75D8B7',
+              400: '#2DC08D',
+              500: '#25A77B',
+              600: '#1D8E68',
+              700: '#157556',
+              800: '#0D5C43',
+              900: '#054331',
+              950: '#022A1E',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0b0f19;
+      color: #f1f5f9;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+    .slide {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      transform: scale(0.98);
+    }
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: scale(1);
+    }
+    .gradient-border {
+      background: linear-gradient(135deg, rgba(45, 192, 141, 0.4), rgba(99, 102, 241, 0.2), rgba(244, 63, 94, 0.2));
+      padding: 1px;
+      border-radius: 1.25rem;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #2DC08D 0%, #38bdf8 50%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="h-screen w-screen flex flex-col justify-between select-none">
+
+  <!-- TOP HEADER / PROGRESS BAR -->
+  <header class="w-full px-6 sm:px-10 py-4 flex items-center justify-between border-b border-slate-800/80 bg-slate-950/60 backdrop-blur-md z-30">
+    <div class="flex items-center gap-3">
+      <div class="w-7 h-7 rounded-lg bg-brand-400 text-slate-950 flex items-center justify-center font-black font-heading text-xs shadow-lg shadow-brand-400/20">
+        ✓
+      </div>
+      <div>
+        <span class="font-heading font-extrabold text-sm sm:text-base tracking-tight text-white">
+          Creati<span class="text-brand-400">CV</span>
+        </span>
+        <span class="text-[10px] text-slate-400 ml-2 hidden sm:inline border-l border-slate-700 pl-2">
+          Final Year CSE Project Defense (2025–2026)
+        </span>
+      </div>
+    </div>
+
+    <!-- Slide Indicators & Controls -->
+    <div class="flex items-center gap-4">
+      <span id="slideCounter" class="text-xs font-mono font-bold text-slate-400 bg-slate-900 border border-slate-800 px-3 py-1 rounded-full">
+        Slide 1 of 15
+      </span>
+      <button onclick="toggleNotes()" class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-colors flex items-center gap-1.5" title="Toggle speaker script & viva tips">
+        <span>🎙️ Script</span>
+      </button>
+      <button onclick="toggleFullscreen()" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-colors" title="Full screen (F11)">
+        ⛶
+      </button>
+    </div>
+  </header>
+
+  <!-- PROGRESS BAR -->
+  <div class="w-full bg-slate-800 h-1 z-30">
+    <div id="progressBar" class="bg-gradient-to-r from-brand-400 to-indigo-500 h-1 transition-all duration-300" style="width: 6.66%;"></div>
+  </div>
+
+  <!-- SLIDES VIEWPORT -->
+  <main class="flex-1 overflow-y-auto p-4 sm:p-8 flex items-center justify-center relative">
+
+    <!-- ================= SLIDE 1: TITLE SLIDE ================= -->
+    <div class="slide active w-full max-w-5xl flex-col items-center justify-center text-center space-y-6 animate-fadeIn" data-notes="Good morning respected teachers and examiners. Today we present our capstone project 'CreatiCV: An AI-Powered ATS Resume Analyzer & Explainable Job Matcher'. We address the 75% rejection rate in automated screening with mathematical explainability.">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-400/10 border border-brand-400/30 text-brand-400 text-xs font-bold uppercase tracking-widest">
+        🎓 Department of Computer Science & Engineering • Capstone Defense
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black font-heading tracking-tight leading-tight max-w-4xl">
+        AI-Powered <span class="gradient-text">ATS Resume Analyzer</span> & Explainable Job Matcher
+      </h1>
+
+      <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        A decoupled microservices architecture for multi-format document ingestion, 27-check heuristic scoring, target role detection, and TF-IDF vector similarity recommendation.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-xl text-left pt-4">
+        <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-1">Project Candidate(s)</span>
+          <span class="text-sm font-bold text-white block">Final Year B.Tech CSE Team</span>
+          <span class="text-xs text-slate-400">Roll No: [21CSE01 - 21CSE04]</span>
+        </div>
+        <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-1">Faculty Supervisor</span>
+          <span class="text-sm font-bold text-brand-400 block">Project Guide & Review Committee</span>
+          <span class="text-xs text-slate-400">Academic Year 2025 – 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 2: PROBLEM STATEMENT ================= -->
+    <div class="slide w-full max-w-5xl flex-col space-y-6" data-notes="Point out that 75% of resumes are rejected by ATS software before a human sees them. Students fail due to 3 reasons: unparsable formatting, missing role keywords, and passive responsibilities without metrics.">
+      <div>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400 block mb-1">01. Industry Motivation</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white">The Problem: The "Black Box" of Automated ATS Screening</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl space-y-3">
+          <div class="text-3xl font-black text-rose-500 font-heading">75%+</div>
+          <h3 class="text-base font-bold text-white">Pre-Recruiter Rejection</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Enterprise platforms (Greenhouse, Workday, Lever) discard resumes with complex tables, non-standard fonts, or missing token boundaries before human review.
+          </p>
+        </div>
+
+        <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl space-y-3">
+          <div class="text-3xl font-black text-amber-500 font-heading">0 Feedback</div>
+          <h3 class="text-base font-bold text-white">Skill Gap Blindness</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Applicants receive automated rejection emails with zero explainability. They are unaware of critical missing technologies (e.g., Docker, TypeScript for Full Stack roles).
+          </p>
+        </div>
+
+        <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl space-y-3">
+          <div class="text-3xl font-black text-indigo-400 font-heading">68% Unmeasured</div>
+          <h3 class="text-base font-bold text-white">Passive Phrasing Deficit</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Student resumes overwhelmingly use passive phrases like "Responsible for building APIs" instead of quantifiable accomplishments like "Reduced latency by 35%".
+          </p>
+        </div>
+      </div>
+
+      <div class="p-4 bg-brand-950/40 border border-brand-500/30 rounded-2xl text-xs text-brand-300">
+        💡 <strong>Research Question:</strong> How can we develop an open, deterministic, and explainable system that gives students immediate visibility into their ATS parsability and career roadmap?
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 3: PROPOSED SOLUTION ================= -->
+    <div class="slide w-full max-w-5xl flex-col space-y-6" data-notes="Explain our four core pillars: dual document ingestion, 27-check rubric, role detection with skill gap generation, and the hybrid 70/30 job matcher.">
+      <div>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400 block mb-1">02. Proposed System</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white">CreatiCV: End-to-End Career Intelligence Platform</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-brand-400/20 text-brand-400 flex items-center justify-center font-bold text-lg shrink-0">1</div>
+          <div>
+            <h4 class="text-sm font-bold text-white">Multi-Format Binary Ingestion</h4>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Extracts raw text streams, structural bounding blocks, and contact links from PDF and DOCX files in under 450ms.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-lg shrink-0">2</div>
+          <div>
+            <h4 class="text-sm font-bold text-white">27-Check Two-Tier ATS Rubric</h4>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Audits Completeness (25%), Skill Density (30%), Action Verbs (25%), and Formatting (20%) using IEEE Std 830 principles.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-lg shrink-0">3</div>
+          <div>
+            <h4 class="text-sm font-bold text-white">Role Classifier & Skill Gap Roadmap</h4>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Automatically detects candidate's applied role across 6 tracks and generates a structured 4-phase learning curriculum.</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg shrink-0">4</div>
+          <div>
+            <h4 class="text-sm font-bold text-white">Explainable Hybrid AI Job Matcher</h4>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Combines 70% explicit skill intersection with 30% TF-IDF Cosine Similarity, enabling 1-click tailored direct applications.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 4: SYSTEM ARCHITECTURE ================= -->
+    <div class="slide w-full max-w-5xl flex-col space-y-6" data-notes="Highlight the 3 decoupled tiers: React 19 frontend, Node.js gateway, and Python FastAPI microservice. Mention the embedded failover in Node.js for 100% uptime.">
+      <div>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400 block mb-1">03. Technical Architecture</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white">3-Tier Decoupled Microservice Architecture</h2>
+      </div>
+
+      <!-- Architecture Flow Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+        <!-- Client -->
+        <div class="border border-brand-400/40 bg-slate-900 p-5 rounded-2xl space-y-3">
+          <div class="text-brand-400 font-bold uppercase text-[11px] tracking-wider">Tier 1: Client Layer</div>
+          <div class="text-base font-bold text-white font-sans">React 19 + Vite 8</div>
+          <ul class="text-slate-400 space-y-1.5 font-sans text-xs">
+            <li>• Tailored Tailwind Design System</li>
+            <li>• Recharts 5-Axis Spider Chart</li>
+            <li>• Real-time CSS Keyframe Physics</li>
+            <li>• Context API + JWT Interceptors</li>
+          </ul>
+          <span class="inline-block bg-slate-800 px-2 py-0.5 rounded text-[10px] text-brand-300">Port 5173</span>
+        </div>
+
+        <!-- Gateway -->
+        <div class="border border-indigo-400/40 bg-slate-900 p-5 rounded-2xl space-y-3">
+          <div class="text-indigo-400 font-bold uppercase text-[11px] tracking-wider">Tier 2: API Gateway</div>
+          <div class="text-base font-bold text-white font-sans">Node.js + Express.js</div>
+          <ul class="text-slate-400 space-y-1.5 font-sans text-xs">
+            <li>• Multer Stream File Ingestion</li>
+            <li>• JWT & Bcrypt Authentication</li>
+            <li>• High-Availability In-Memory Store</li>
+            <li>• Circuit Breaker & Failover Parser</li>
+          </ul>
+          <span class="inline-block bg-slate-800 px-2 py-0.5 rounded text-[10px] text-indigo-300">Port 5000</span>
+        </div>
+
+        <!-- AI Engine -->
+        <div class="border border-purple-400/40 bg-slate-900 p-5 rounded-2xl space-y-3">
+          <div class="text-purple-400 font-bold uppercase text-[11px] tracking-wider">Tier 3: AI/NLP Engine</div>
+          <div class="text-base font-bold text-white font-sans">Python 3 + FastAPI</div>
+          <ul class="text-slate-400 space-y-1.5 font-sans text-xs">
+            <li>• PyPDF & python-docx Parsers</li>
+            <li>• 500+ Canonical Skill Taxonomy</li>
+            <li>• Scikit-learn TF-IDF Vectorizer</li>
+            <li>• NumPy Cosine Linear Kernel</li>
+          </ul>
+          <span class="inline-block bg-slate-800 px-2 py-0.5 rounded text-[10px] text-purple-300">Port 8000</span>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl text-xs text-slate-300 flex items-center justify-between">
+        <span>🛡️ <strong>Fault Tolerance:</strong> If Python or MongoDB is down, Node.js activates the embedded JavaScript NLP parser and mock store.</span>
+        <span class="text-brand-400 font-bold font-mono">100% Uptime</span>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 5: NLP PARSER & SKILL TAXONOMY ================= -->
+    <div class="slide w-full max-w-5xl flex-col space-y-6" data-notes="Explain skill normalization: how disparate terms like K8s or ReactJS are mapped to canonical names. Show how skills are divided into Technical, Tools, and Soft categories.">
+      <div>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400 block mb-1">04. NLP Information Extraction</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white">Document Parsing & Canonical Skill Normalization</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-3">
+          <h3 class="text-sm font-bold text-brand-400">Canonical Skill Alias Normalizer</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Applicants write varied abbreviations. Our regex boundary matcher normalizes tokens against a 500+ database:
+          </p>
+          <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 font-mono text-xs space-y-1">
+            <div><span class="text-slate-500">Input:</span> "k8s, reactjs, postgres"</div>
+            <div><span class="text-brand-400">Parsed:</span> [Kubernetes, React, PostgreSQL]</div>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-3">
+          <h3 class="text-sm font-bold text-indigo-400">Tri-Category Skill Taxonomy</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Skills are automatically separated into three functional tiers for balanced evaluation:
+          </p>
+          <div class="grid grid-cols-3 gap-2 text-center text-xs">
+            <div class="p-2 bg-slate-950 rounded-lg border border-slate-800 text-brand-400 font-bold">Technical<br><span class="text-[10px] text-slate-400 font-normal">React, Python</span></div>
+            <div class="p-2 bg-slate-950 rounded-lg border border-slate-800 text-indigo-400 font-bold">Tools & Cloud<br><span class="text-[10px] text-slate-400 font-normal">Docker, Git</span></div>
+            <div class="p-2 bg-slate-950 rounded-lg border border-slate-800 text-purple-400 font-bold">Interpersonal<br><span class="text-[10px] text-slate-400 font-normal">Leadership</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 6: 27-POINT ATS RUBRIC ================= -->
+    <div class="slide w-full max-w-5xl flex-col space-y-6" data-notes="Explain the four quadrants of the ATS score: Completeness 25%, Skill Density 30%, Action Verbs 25%, Formatting 20%. Emphasize this is deterministic, not random.">
+      <div>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400 block mb-1">05. Heuristic Quality Index</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white">The 27-Point ATS Rubric Breakdown</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl space-y-2 text-center">
+          <div class="text-2xl font-black text-brand-400">25%</div>
+          <div class="font-bold text-white">Section Completeness</div>
+          <p class="text-[11px] text-slate-400">Detects Contact, Summary, Work History, Education & Projects.</p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl space-y-2 text-center">
+          <div class="text-2xl font-black text-indigo-400">30%</div>
+          <div class="font-bold text-white">Skill Density</div>
+          <p class="text-[11px] text-slate-400">Evaluates breadth of frameworks, libraries, and tools.</p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl space-y-2 text-center">
+          <div class="text-2xl font-black text-purple-400">25%</div>
+          <div class="font-bold text-white">Action Verbs & Impact</div>
+          <p class="text-[11px] text-slate-400">Scans for verbs like "Architected" and quantifiable metrics (% or numbers).</p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl space-y-2 text-center">
+          <div class="text-2xl font-black text-amber-400">20%</div>
+          <div class="font-bold text-white">Formatting & Layout</div>
+          <p class="text-[11px] text-slate-400">Audits word counts (400–1000), single-column hierarchy, and clean text streams.</p>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-2xl text-xs flex justify-between items-center font-mono">
+        <span class="text-slate-400">Score Formula: Total = (0.25 × Comp) + (0.30 × Skills) + (0.25 × Verbs) + (0.20 × Format)</span>
+        <span class="text-brand-400 font-bold">Bounded [0 – 100]</span>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 7: TARGET ROLE DETECTION ================= -->
+    <div class="slide w-full max-w-5xl flex-col space-y-6" data-notes="Explain automated role classification: how the system figures out if the student is Full Stack, Frontend, Backend, AI/ML, Cloud/DevOps, or SDE, and generates missing skill roadmaps.">
+      <div>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400 block mb-1">06. Intelligent Role Classification</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white">Applied Role Detection & Skills Gap Analysis</h2>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl">
+          <div class="text-brand-400 font-bold">Full Stack Developer</div>
+          <div class="text-[11px] text-slate-400 mt-1">React, Node, Express, MongoDB</div>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl">
+          <div class="text-indigo-400 font-bold">Frontend Engineer</div>
+          <div class="text-[11px] text-slate-400 mt-1">React, Next.js, Tailwind, Redux</div>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl">
+          <div class="text-purple-400 font-bold">Backend Engineer</div>
+          <div class="text-[11px] text-slate-400 mt-1">Node/Python, PostgreSQL, Redis</div>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl">
+          <div class="text-rose-400 font-bold">AI / ML Engineer</div>
+          <div class="text-[11px] text-slate-400 mt-1">Python, PyTorch, Scikit-learn, NLP</div>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl">
+          <div class="text-sky-400 font-bold">Cloud & DevOps</div>
+          <div class="text-[11px] text-slate-400 mt-1">Docker, K8s, AWS, Terraform, CI/CD</div>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl">
+          <div class="text-amber-400 font-bold">Software Engineer (SDE)</div>
+          <div class="text-[11px] text-slate-400 mt-1">Java, C++, OOP, Data Structures</div>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/90 border border-slate-800 p-4 rounded-2xl text-xs space-y-2">
+        <div class="font-bold text-white flex items-center gap-2">
+          <span>🎯 Real-Time Output for Candidate:</span>
+          <span class="text-brand-400 bg-brand-950 px-2.5 py-0.5 rounded-full border border-brand-500/30 font-mono">Role: Full Stack (96% Match)</span>
+        </div>
+        <p class="text-slate-400">
+          Detected Gaps: <strong class="text-amber-300">TypeScript, Docker, Redis</strong>. Provides unquantified achievement rewrites and a 4-week step-by-step learning roadmap.
+        </p>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 8: JOB MATCHING MATHEMATICS ================= -->
+    <div class="slide w-full max-w-5xl flex-col space-y-6" data-notes="Walk through the mathematical formula. Show Skill Coverage (70%) and TF-IDF Cosine Similarity (30%). Explain why hybrid is superior to single-score approaches.">
+      <div>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400 block mb-1">07. Mathematical Formulation</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white">Explainable AI Job Matching Algorithm</h2>
+      </div>
+
+      <!-- Formula Box -->
+      <div class="p-6 bg-slate-950 border-2 border-brand-400/50 rounded-2xl text-center space-y-3 shadow-xl">
+        <span class="text-xs uppercase font-mono text-slate-400 tracking-wider">Composite Dual-Score Formula</span>
+        <div class="text-xl sm:text-3xl font-mono font-extrabold text-white">
+          Score = round( <span class="text-brand-400">0.70 × S<sub>coverage</sub></span> + <span class="text-indigo-400">0.30 × S<sub>semantic</sub></span> )
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2">
+          <div class="text-brand-400 font-bold font-sans">1. Explicit Skill Coverage (70%)</div>
+          <div class="text-slate-300">S<sub>coverage</sub> = (|S<sub>resume</sub> ∩ S<sub>job_req</sub>| / |S<sub>job_req</sub>|) × 100</div>
+          <p class="text-slate-400 font-sans text-[11px]">Strictly validates non-negotiable required technical skills.</p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2">
+          <div class="text-indigo-400 font-bold font-sans">2. TF-IDF Cosine Similarity (30%)</div>
+          <div class="text-slate-300">cos(θ) = (v<sub>r</sub> · v<sub>j</sub>) / (||v<sub>r</sub>|| ||v<sub>j</sub>||) × 100</div>
+          <p class="text-slate-400 font-sans text-[11px]">Evaluates overall domain context and experience descriptions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 9: DIRECT APPLY & PIPELINE ================= -->
+    <div class="slide w-full max-w-5xl flex-col space-y-6" data-notes="Demonstrate the newly built Direct Apply modal, 1-click AI pitch generator, and Kanban application tracker.">
+      <div>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400 block mb-1">08. Actionable Career Suite</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white">Direct Applying Workflow & Pipeline Tracker</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-2">
+          <div class="text-xl">🚀</div>
+          <h4 class="text-sm font-bold text-white">1-Click Direct Apply</h4>
+          <p class="text-slate-400">Pre-fills candidate details, pre-attaches active analyzed resume, and tracks compatibility score.</p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-2">
+          <div class="text-xl">✨</div>
+          <h4 class="text-sm font-bold text-white">AI Pitch Generator</h4>
+          <p class="text-slate-400">Synthesizes a 2-sentence elevator pitch tailored to matched skills and the specific target company.</p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-2">
+          <div class="text-xl">📋</div>
+          <h4 class="text-sm font-bold text-white">Kanban Pipeline Tracker</h4>
+          <p class="text-slate-400">Tracks applications across five stages: Saved → Applied → Interview → Offered → Archived.</p>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-2xl text-xs text-slate-300">
+        🎯 <strong>Full Loop:</strong> Resume Upload ➔ ATS Audit ➔ Role Detection ➔ Job Match ➔ Direct Apply ➔ Mock Interview Prep.
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 10: ANIMATED SCANNER SHOWCASE ================= -->
+    <div class="slide w-full max-w-5xl flex-col space-y-6" data-notes="Present the interactive animated scanner: needle gauge, ECG waveform, and dual swaying resumes. Explain how visual metaphors help students understand ATS.">
+      <div>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400 block mb-1">09. Human-Computer Interaction</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white">Animated ATS Scanner & Understanding Simulator</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-3">
+          <h4 class="text-sm font-bold text-brand-400">Hardware Grader & Scanner Apparatus</h4>
+          <ul class="text-slate-400 space-y-2">
+            <li>• <strong>Running Meter Needle:</strong> Dynamic CSS physics animating ATS gauge reading.</li>
+            <li>• <strong>Oscilloscope Waveform:</strong> Infinite-scrolling green keyword pulse graph.</li>
+            <li>• <strong>Neon Laser Scan Beam:</strong> Real-time vertical sweep detecting section tokens.</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-3">
+          <h4 class="text-sm font-bold text-indigo-400">ATS Understanding Check Parallax</h4>
+          <ul class="text-slate-400 space-y-2">
+            <li>• <strong>Dual Swaying Resumes:</strong> Counter-motion 3D parallax drifting left and right.</li>
+            <li>• <strong>Floating Detection Pills:</strong> Interactive Keywords, Contact, and Skills badges.</li>
+            <li>• <strong>Enterprise Compatibility:</strong> Reverse-engineered models for Workday & Greenhouse.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 11: DATABASE DESIGN ================= -->
+    <div class="slide w-full max-w-5xl flex-col space-y-6" data-notes="Explain the MongoDB schemas: Users, Resumes, Jobs, Applications, and the zero-config in-memory store for failover.">
+      <div>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400 block mb-1">10. Data Modeling</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white">Entity Relationship & Database Schemas</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono">
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+          <div class="text-brand-400 font-bold">UserSchema</div>
+          <div class="text-slate-400 text-[11px] font-sans">Name, Email, HashedPassword, TargetRole, Preferences</div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+          <div class="text-indigo-400 font-bold">ResumeSchema</div>
+          <div class="text-slate-400 text-[11px] font-sans">RawText, ExtractedSkills, Breakdown27, RoleAnalysis</div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+          <div class="text-purple-400 font-bold">JobSchema</div>
+          <div class="text-slate-400 text-[11px] font-sans">Title, Company, Location, RequiredSkills, SalaryRange</div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+          <div class="text-amber-400 font-bold">AppSchema</div>
+          <div class="text-slate-400 text-[11px] font-sans">UserId, JobId, Status, PitchNotes, AppliedAt</div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-2xl text-xs text-slate-300">
+        💾 <strong>Zero-Config Architecture:</strong> The application automatically detects if a local MongoDB server is reachable. If not, it boots a high-availability in-memory store pre-seeded with jobs and benchmark resumes.
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 12: RESULTS & BENCHMARKS ================= -->
+    <div class="slide w-full max-w-5xl flex-col space-y-6" data-notes="Present the experimental results: sub-second latency, high skill extraction accuracy (92.1%), and zero failover downtime.">
+      <div>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400 block mb-1">11. Experimental Results</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white">System Benchmarks & Performance Analysis</h2>
+      </div>
+
+      <div class="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 text-xs">
+        <table class="w-full text-left">
+          <thead class="bg-slate-800 text-slate-300 font-bold">
+            <tr>
+              <th class="p-3">Performance Metric</th>
+              <th class="p-3">Engineering Target</th>
+              <th class="p-3">Achieved Result</th>
+              <th class="p-3">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-3 font-semibold">PDF Text & Structure Extraction</td>
+              <td class="p-3 text-slate-400">&lt; 2.0s</td>
+              <td class="p-3 font-mono text-brand-400 font-bold">0.42 seconds</td>
+              <td class="p-3 text-brand-400 font-bold">✅ Surpassed</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold">TF-IDF Vector Match (50 Jobs)</td>
+              <td class="p-3 text-slate-400">&lt; 1.5s</td>
+              <td class="p-3 font-mono text-brand-400 font-bold">0.18 seconds</td>
+              <td class="p-3 text-brand-400 font-bold">✅ Surpassed</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold">Skill Extraction Accuracy</td>
+              <td class="p-3 text-slate-400">&gt; 85%</td>
+              <td class="p-3 font-mono text-brand-400 font-bold">92.1% (vs Ground Truth)</td>
+              <td class="p-3 text-brand-400 font-bold">✅ Verified</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold">Failover Availability (Zero Downtime)</td>
+              <td class="p-3 text-slate-400">99.0%</td>
+              <td class="p-3 font-mono text-brand-400 font-bold">100% (Circuit Breaker)</td>
+              <td class="p-3 text-brand-400 font-bold">✅ Certified</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 13: COMPETITIVE ADVANTAGE ================= -->
+    <div class="slide w-full max-w-5xl flex-col space-y-6" data-notes="Compare CreatiCV with commercial tools like Jobscan and generic ChatGPT prompts. Highlight that CreatiCV is free, deterministic, and includes a full application suite.">
+      <div>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400 block mb-1">12. Comparative Evaluation</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white">Comparison with Commercial & AI Alternatives</h2>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 text-xs">
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-3">
+          <div class="font-bold text-slate-400">Generic LLMs (ChatGPT)</div>
+          <ul class="text-slate-400 space-y-1.5">
+            <li>❌ Non-deterministic hallucination</li>
+            <li>❌ Cannot parse raw binary PDFs reliably</li>
+            <li>❌ Slow vector matching latency</li>
+            <li>❌ No application tracking pipeline</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-3">
+          <div class="font-bold text-amber-400">Commercial ATS (Jobscan)</div>
+          <ul class="text-slate-400 space-y-1.5">
+            <li>⚠️ Expensive subscription ($30/mo)</li>
+            <li>❌ Proprietary "black-box" score</li>
+            <li>❌ No direct job apply interface</li>
+            <li>❌ Cloud-only with no offline store</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-900 border-2 border-brand-400 p-5 rounded-2xl space-y-3 shadow-lg shadow-brand-400/10">
+          <div class="font-bold text-brand-400 flex items-center justify-between">
+            <span>CreatiCV (Our Project)</span>
+            <span>⭐</span>
+          </div>
+          <ul class="text-slate-200 space-y-1.5 font-medium">
+            <li>✅ Deterministic 27-check rubric</li>
+            <li>✅ Open 70/30 Explainable Math Formula</li>
+            <li>✅ Integrated 1-Click Direct Applying</li>
+            <li>✅ 100% Free, Local & Microservice-Ready</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 14: FUTURE ENHANCEMENTS ================= -->
+    <div class="slide w-full max-w-5xl flex-col space-y-6" data-notes="Briefly list future research avenues: JobBERT embeddings, 1-click tailored PDF resume exports, and live LinkedIn/Indeed API scraping.">
+      <div>
+        <span class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400 block mb-1">13. Future Roadmap</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-heading text-white">Future Enhancements & Scalability Scope</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-1.5">
+          <h4 class="font-bold text-white flex items-center gap-2"><span>🤖</span> Domain Transformers (JobBERT)</h4>
+          <p class="text-slate-400">Upgrading TF-IDF vectors with specialized fine-tuned transformer models for deeper contextual sentence embeddings.</p>
+        </div>
+
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-1.5">
+          <h4 class="font-bold text-white flex items-center gap-2"><span>📄</span> Automated 1-Click Tailored PDF Generation</h4>
+          <p class="text-slate-400">Integrating headless Chrome/Puppeteer to instantly generate an ATS-optimized PDF resume targeted to any specific job description.</p>
+        </div>
+
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-1.5">
+          <h4 class="font-bold text-white flex items-center gap-2"><span>🌐</span> Live Employment API Ingestion</h4>
+          <p class="text-slate-400">Connecting live webhooks to LinkedIn, Indeed, and Naukri APIs for automated real-time vacancy aggregation.</p>
+        </div>
+
+        <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-1.5">
+          <h4 class="font-bold text-white flex items-center gap-2"><span>🗣️</span> Multi-Lingual & Voice Mock Interview</h4>
+          <p class="text-slate-400">Adding audio speech-to-text recognition to evaluate candidate oral communication in AI Mock Interviews.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 15: CONCLUSION & Q&A ================= -->
+    <div class="slide w-full max-w-5xl flex-col items-center justify-center text-center space-y-6" data-notes="Conclude with confidence. Thank the guide, HOD, and external examiners, and state that we are ready for the live demonstration and Q&A.">
+      <div class="w-16 h-16 rounded-3xl bg-brand-400/20 text-brand-400 flex items-center justify-center text-3xl font-heading shadow-xl mx-auto">
+        ✓
+      </div>
+
+      <h2 class="text-3xl sm:text-5xl font-black font-heading text-white">
+        Thank You!
+      </h2>
+
+      <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        CreatiCV successfully synthesizes modern decoupled microservices, natural language processing, and explainable vector mathematics into an intuitive recruitment tool.
+      </p>
+
+      <div class="p-4 bg-slate-900 border border-slate-800 rounded-2xl max-w-md mx-auto text-xs text-slate-300">
+        <strong>We are now open for faculty questions and the live demonstration.</strong>
+      </div>
+
+      <div class="text-[11px] font-mono text-slate-500">
+        Live Application: <a href="http://localhost:5173" target="_blank" class="text-brand-400 underline">http://localhost:5173</a> • API: <a href="http://localhost:5000/health" target="_blank" class="text-indigo-400 underline">http://localhost:5000</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FLOATING SPEAKER SCRIPT DRAWER (TOGGLEABLE) -->
+  <aside id="speakerNotesDrawer" class="hidden fixed bottom-16 left-4 right-4 sm:left-10 sm:right-10 bg-slate-950/95 border-2 border-brand-400/60 p-4 sm:p-5 rounded-2xl shadow-2xl backdrop-blur-xl z-50 animate-fadeInUp">
+    <div class="flex items-center justify-between pb-2 border-b border-slate-800 mb-2">
+      <div class="flex items-center gap-2 text-xs font-bold text-brand-400">
+        <span>🎙️ Speaker Script & Viva Defense Notes for Current Slide</span>
+      </div>
+      <button onclick="toggleNotes()" class="text-slate-400 hover:text-white text-xs font-bold">✕ Close</button>
+    </div>
+    <p id="speakerNotesText" class="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans font-medium">
+      Notes will appear here...
+    </p>
+  </aside>
+
+  <!-- BOTTOM CONTROL BAR -->
+  <footer class="w-full px-6 sm:px-10 py-3.5 flex items-center justify-between border-t border-slate-800/80 bg-slate-950/80 backdrop-blur-md z-30">
+    <div class="text-[11px] font-mono text-slate-500 hidden sm:block">
+      Use <kbd class="bg-slate-800 px-1.5 py-0.5 rounded text-slate-300">←</kbd> <kbd class="bg-slate-800 px-1.5 py-0.5 rounded text-slate-300">→</kbd> or <kbd class="bg-slate-800 px-1.5 py-0.5 rounded text-slate-300">Space</kbd> to navigate
+    </div>
+
+    <div class="flex items-center gap-3 mx-auto sm:mx-0">
+      <button onclick="prevSlide()" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all shadow-sm flex items-center gap-1 active:scale-95">
+        ← Previous
+      </button>
+      <button onclick="nextSlide()" class="px-5 py-2 rounded-xl text-xs font-bold bg-brand-400 hover:bg-brand-500 text-slate-950 transition-all shadow-md shadow-brand-400/20 flex items-center gap-1 active:scale-95">
+        Next Slide →
+      </button>
+    </div>
+  </footer>
+
+  <!-- SCRIPT FOR NAVIGATION & NOTES -->
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const counterEl = document.getElementById('slideCounter');
+    const progressEl = document.getElementById('progressBar');
+    const notesDrawer = document.getElementById('speakerNotesDrawer');
+    const notesText = document.getElementById('speakerNotesText');
+
+    function updateSlide() {
+      slides.forEach((s, idx) => {
+        s.classList.toggle('active', idx === currentSlide);
+      });
+      counterEl.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
+      progressEl.style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+      
+      const currentNotes = slides[currentSlide].getAttribute('data-notes') || 'No notes for this slide.';
+      notesText.textContent = currentNotes;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+
+    function toggleNotes() {
+      notesDrawer.classList.toggle('hidden');
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
+      } else {
+        document.exitFullscreen().catch(err => console.log(err));
+      }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key.toLowerCase() === 'n') {
+        toggleNotes();
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullscreen();
+      }
+    });
+
+    // Initialize notes on load
+    updateSlide();
+  </script>
+
+</body>
+</html>

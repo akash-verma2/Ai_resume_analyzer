@@ -1,0 +1,22 @@
+{
+  "name": "ai-resume-analyzer-and-job-matcher",
+  "version": "1.0.0",
+  "description": "AI-Powered Resume Analyzer and Job Matcher — Final Year CSE Capstone Project",
+  "scripts": {
+    "start:backend": "cd backend && npm run dev",
+    "start:frontend": "cd frontend && npm run dev",
+    "start:ai": "cd ai-service && python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": [
+    "resume-analyzer",
+    "job-matcher",
+    "ats-scorer",
+    "nlp",
+    "fastapi",
+    "mern-stack",
+    "final-year-cse-project"
+  ],
+  "author": "CSE Project Team",
+  "license": "MIT"
+}
